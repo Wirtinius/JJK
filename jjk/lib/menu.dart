@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'actor/actor_list.dart'; 
+import 'actor/data.dart'; 
 
 class MenuPage extends StatelessWidget {
   @override
@@ -56,7 +58,10 @@ class MenuPage extends StatelessWidget {
               width: 300.0,
               child: ElevatedButton(
                 onPressed: () {
-                  
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ActorListPage(actors: actors)),
+                  );
                 },
                 child: Text(
                   'List of actors',
