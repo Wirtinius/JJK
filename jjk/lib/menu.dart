@@ -110,7 +110,7 @@ class MenuPage extends StatelessWidget {
                   onPressed: () {
                  Navigator.push(
                  context,
-                 MaterialPageRoute(builder: (context) => ReviewsPage(reviews: reviews)),
+                 MaterialPageRoute(builder: (context) => ReviewsPage()),
                      );
                           },
 
