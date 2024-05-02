@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jjk/reviws.dart';
 import 'actor/actor_list.dart'; 
 import 'actor/data.dart'; 
 
@@ -106,11 +107,15 @@ class MenuPage extends StatelessWidget {
             SizedBox(
               width: 300.0,
               child: ElevatedButton(
-                onPressed: () {
-                  
-                },
+                  onPressed: () {
+                 Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => ReviewsPage(reviews: reviews)),
+                     );
+                          },
+
                 child: Text(
-                  'Facts',
+                  'Reviews',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50,
