@@ -3,6 +3,7 @@ import 'package:jjk/reviws.dart';
 import 'package:jjk/stuff.dart';
 import 'actor/actor_list.dart'; 
 import 'actor/data.dart'; 
+import 'news.dart';
 
 class MenuPage extends StatelessWidget {
   @override
@@ -37,7 +38,7 @@ class MenuPage extends StatelessWidget {
               width: 300.0,
               child: ElevatedButton(
                 onPressed: () {
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ContainerPage()),
                   );
@@ -89,7 +90,10 @@ class MenuPage extends StatelessWidget {
               width: 300.0,
               child: ElevatedButton(
                 onPressed: () {
-                  
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewsListPage()),
+                  );
                 },
                 child: Text(
                   'List of news',
@@ -106,18 +110,17 @@ class MenuPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ), 
+            ),
             SizedBox(height: 20),
             SizedBox(
               width: 300.0,
               child: ElevatedButton(
-                  onPressed: () {
-                 Navigator.push(
-                 context,
-                 MaterialPageRoute(builder: (context) => ReviewsPage()),
-                     );
-                          },
-
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReviewsPage()),
+                  );
+                },
                 child: Text(
                   'Reviews',
                   style: TextStyle(
