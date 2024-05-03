@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jjk/reviws.dart';
+import 'package:jjk/stuff.dart';
 import 'actor/actor_list.dart'; 
 import 'actor/data.dart'; 
 
@@ -36,7 +37,10 @@ class MenuPage extends StatelessWidget {
               width: 300.0,
               child: ElevatedButton(
                 onPressed: () {
-                  
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ContainerPage()),
+                  );
                 },
                 child: Text(
                   'List of stuff',
