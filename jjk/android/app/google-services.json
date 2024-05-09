@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017407697366",
+    "project_id": "authjjk",
+    "storage_bucket": "authjjk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017407697366:android:a5172b004604d54bdcf477",
+        "android_client_info": {
+          "package_name": "com.example.jjk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqwcTbnXKA6lyim9W3nawveWEphX_44Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
