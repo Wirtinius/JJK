@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jjk/event/event_page.dart';
+import 'package:jjk/news/news_page.dart';
 import 'package:jjk/random.dart';
 import 'package:jjk/reviws.dart';
-import 'package:jjk/stuff.dart';
+import 'package:jjk/stuff/stuff_page.dart';
 import 'actor/actor_list.dart'; 
 import 'actor/data.dart'; 
-import 'news.dart';
 
 class MenuPage extends StatelessWidget {
   @override
@@ -53,7 +54,7 @@ class MenuPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ContainerPage()),
+                    MaterialPageRoute(builder: (context) => StuffPage()),
                   );
                 },
               ),
@@ -85,7 +86,7 @@ class MenuPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NewsListPage()),
+                    MaterialPageRoute(builder: (context) => NewsPage()),
                   );
                 },
               ),
@@ -118,6 +119,22 @@ class MenuPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => RandomTextPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Events',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'JJK',
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EventPage()),
                   );
                 },
               ),
