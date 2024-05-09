@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jjk/event/event_page.dart';
 import 'package:jjk/news/news_page.dart';
+import 'package:jjk/actor/actor_page.dart';
+import 'package:jjk/review/reviews_page.dart';
+
 import 'package:jjk/random.dart';
-import 'package:jjk/reviws.dart';
 import 'package:jjk/stuff/stuff_page.dart';
-import 'actor/actor_list.dart'; 
-import 'actor/data.dart'; 
 
 class MenuPage extends StatelessWidget {
   @override
@@ -70,7 +70,7 @@ class MenuPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ActorListPage(actors: actors)),
+                    MaterialPageRoute(builder: (context) => ActorPage()),
                   );
                 },
               ),
