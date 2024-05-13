@@ -10,18 +10,56 @@ class _ReviewsPageState extends State<ReviewsPage> {
   TextEditingController _textEditingController = TextEditingController();
   int _rating = 0;
   late Future<List<Review>> futureReviews;
+  final ReviewProvider _reviewProvider = ReviewProvider();
+
 
   @override
   void initState() {
     super.initState();
+      super.initState();
     futureReviews = ReviewProvider().fetchAllReviews();
   }
 
-  void _addReview() {
-    // Add review logic here using ReviewProvider
-    // Use _textEditingController.text for review text
-    // Use _rating for review rating
+void _addReview() {
+  if (_rating == 0) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Please select a rating.'),
+      ),
+    );
+    return;
   }
+
+  Map<String, dynamic> data = {
+    'text': _textEditingController.text,
+    'rating': _rating,
+  };
+
+  ReviewProvider().createReview(data).then((review) {
+    setState(() {
+      futureReviews = ReviewProvider().fetchAllReviews();
+    });
+
+    _textEditingController.clear();
+    setState(() {
+      _rating = 0;
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Review added successfully'),
+      ),
+    );
+  }).catchError((error) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Failed to add review: $error'),
+      ),
+    );
+  });
+}
+
+
 
   @override
   Widget build(BuildContext context) {

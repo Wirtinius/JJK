@@ -40,7 +40,7 @@ class ActorDetailPage extends StatelessWidget {
             Image.network(
               actor.image,
               width: 500,
-              height: 300,
+              height: 200,
               fit: BoxFit.cover,
             ),
           ],

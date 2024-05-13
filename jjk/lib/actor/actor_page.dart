@@ -67,14 +67,7 @@ class _ActorPageState extends State<ActorPage> {
                           fontFamily: 'JJK',
                         ),
                       ),
-                      subtitle: Text(
-                        snapshot.data![index].bio,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontFamily: 'JJK',
-                        ),
-                      ),
+                      
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: Image.network(
