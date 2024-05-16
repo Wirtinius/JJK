@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 import 'package:jjk/event/event_page.dart';
 import 'package:jjk/news/news_page.dart';
 import 'package:jjk/actor/actor_page.dart';
@@ -8,9 +9,24 @@ import 'package:jjk/auth/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:jjk/random.dart';
 import 'package:jjk/stuff/stuff_page.dart';
-
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  _MenuPageState createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/trailer.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +45,7 @@ class MenuPage extends StatelessWidget {
       ),
       drawer: Drawer(
         child: StreamBuilder<User?>(
-          stream: _auth.authStateChanges(),
+          stream: widget._auth.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               User? user = snapshot.data;
@@ -51,7 +67,6 @@ class MenuPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Other list tiles for navigation
                     _buildTile(context, 'List of stuff', StuffPage()),
                     _buildTile(context, 'List of actors', ActorPage()),
                     _buildTile(context, 'List of news', NewsPage()),
@@ -83,7 +98,7 @@ class MenuPage extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          _auth.signOut();
+                          widget._auth.signOut();
                         },
                       ),
                     ]
@@ -91,8 +106,42 @@ class MenuPage extends StatelessWidget {
                 ),
               );
             }
-            return CircularProgressIndicator(); // Loading state while waiting for auth
+            return CircularProgressIndicator();
           },
+        ),
+      ),
+      body: ListView(
+        children: [
+          if (_controller.value.isInitialized)
+            AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller),
+            )
+          else
+            Center(child: CircularProgressIndicator()),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'JJK - Info about the anime',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: 'JJK',
+              ),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _controller.value.isPlaying
+                ? _controller.pause()
+                : _controller.play();
+          });
+        },
+        child: Icon(
+          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
       ),
     );
@@ -116,4 +165,16 @@ class MenuPage extends StatelessWidget {
       },
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: MenuPage(),
+  ));
 }
